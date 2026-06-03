@@ -140,6 +140,9 @@ body{font-family:var(--font);color:var(--ink);display:flex;align-items:center;ju
       <span class="s2-logo" id="s2l2" style="color:var(--dazn)">DAZN</span>
       <span class="s2-logo" id="s2l3" style="color:var(--prime)">Prime Video</span>
       <span class="s2-logo" id="s2l4" style="color:var(--hbo)">HBO Max</span>
+      <span class="s2-logo" id="s2l5" style="color:#F47521">Discovery+</span>
+      <span class="s2-logo" id="s2l6" style="color:#F0B90B">Rakuten</span>
+      <span class="s2-logo" id="s2l7" style="color:#FF3366">Chili</span>
     </div>
   </div>
 
@@ -189,11 +192,14 @@ body{font-family:var(--font);color:var(--ink);display:flex;align-items:center;ju
             <div class="s4-bars" id="s4bars"></div>
           </div>
           <div class="s4-plats">
-            <span class="s4-plat" id="s4p0" style="color:var(--nflx)">Netflix · 680K</span>
-            <span class="s4-plat" id="s4p1" style="color:var(--dis)">Disney+ · 520K</span>
-            <span class="s4-plat" id="s4p2" style="color:var(--dazn)">DAZN · 440K</span>
-            <span class="s4-plat" id="s4p3" style="color:var(--prime)">Prime · 490K</span>
-            <span class="s4-plat" id="s4p4" style="color:var(--hbo)">HBO · 270K</span>
+            <span class="s4-plat" id="s4p0" style="color:var(--nflx)">Netflix</span>
+            <span class="s4-plat" id="s4p1" style="color:var(--dis)">Disney+</span>
+            <span class="s4-plat" id="s4p2" style="color:var(--dazn)">DAZN</span>
+            <span class="s4-plat" id="s4p3" style="color:var(--prime)">Prime</span>
+            <span class="s4-plat" id="s4p4" style="color:var(--hbo)">HBO</span>
+            <span class="s4-plat" id="s4p5" style="color:#F47521">Discovery+</span>
+            <span class="s4-plat" id="s4p6" style="color:#F0B90B">Rakuten</span>
+            <span class="s4-plat" id="s4p7" style="color:#FF3366">Chili</span>
           </div>
         </div>
       </div>
@@ -327,8 +333,11 @@ at(6.9, () => anim('s2l1', {opacity:'1', transform:'scale(1)'}, 400));
 at(7.2, () => anim('s2l2', {opacity:'1', transform:'scale(1)'}, 400));
 at(7.5, () => anim('s2l3', {opacity:'1', transform:'scale(1)'}, 400));
 at(7.8, () => anim('s2l4', {opacity:'1', transform:'scale(1)'}, 400));
+at(8.1, () => anim('s2l5', {opacity:'1', transform:'scale(1)'}, 400));
+at(8.4, () => anim('s2l6', {opacity:'1', transform:'scale(1)'}, 400));
+at(8.7, () => anim('s2l7', {opacity:'1', transform:'scale(1)'}, 400));
 at(10.0, () => {
-  ['s2e','s2t','s2l0','s2l1','s2l2','s2l3','s2l4'].forEach(id => anim(id, {opacity:'0'}, 400));
+  ['s2e','s2t','s2l0','s2l1','s2l2','s2l3','s2l4','s2l5','s2l6','s2l7'].forEach(id => anim(id, {opacity:'0'}, 400));
 });
 
 // -- SCENE 3: AI / MAiNAUS (11-17s) --
@@ -364,6 +373,9 @@ at(21.15, () => anim('s4p1', {opacity:'1'}, 300));
 at(21.3, () => anim('s4p2', {opacity:'1'}, 300));
 at(21.45, () => anim('s4p3', {opacity:'1'}, 300));
 at(21.6, () => anim('s4p4', {opacity:'1'}, 300));
+at(21.75, () => anim('s4p5', {opacity:'1'}, 300));
+at(21.9, () => anim('s4p6', {opacity:'1'}, 300));
+at(22.05, () => anim('s4p7', {opacity:'1'}, 300));
 at(24.0, () => {
   anim('s4dash', {opacity:'0', transform:'translateY(-20px) scale(.98)'}, 500);
   anim('s4label', {opacity:'0'}, 400);
