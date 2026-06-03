@@ -386,13 +386,22 @@ at(30.8, () => anim('s6claim', {opacity:'1'}, 500));
 at(31.5, () => anim('s6url', {opacity:'1'}, 400));
 
 // ═══ AUDIO ═══
-// Drop your MP3 in the same folder as "soundtrack.mp3" — it plays on click
 const audio = new Audio('soundtrack.mp3');
 audio.volume = 0.7;
+
+// Fade out audio at end of video
+at(31, () => {
+  const fadeOut = setInterval(() => {
+    if (audio.volume > 0.05) { audio.volume = Math.max(0, audio.volume - 0.05); }
+    else { audio.volume = 0; audio.pause(); clearInterval(fadeOut); }
+  }, 100);
+});
+
 const origStart = startVideo;
 startVideo = function() {
   origStart();
   audio.currentTime = 0;
+  audio.volume = 0.7;
   audio.play().catch(() => {});
 };
 </script>
