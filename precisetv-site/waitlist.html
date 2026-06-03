@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Precise TV — Accesso anticipato</title>
+<meta name="description" content="Entra nella waitlist di Precise TV. Piattaforma AI per advertising su Connected TV premium.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0A0A0B;--bg2:#101012;
+  --surf:#141416;--surf2:#1A1A1D;--surf3:#202023;
+  --line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.16);
+  --ink:#EDEDED;--mut:rgba(237,237,237,.55);--mut2:rgba(237,237,237,.33);
+  --acc:#C9A961;--acc-light:#D4BA7A;--acc-glow:rgba(201,169,97,.12);
+  --ok:#5BCF9B;
+  --font:Inter,-apple-system,BlinkMacSystemFont,sans-serif;
+  --wrap:960px;--px:28px;
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.55;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+body::before{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.03;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(50% 40% at 50% -5%,rgba(201,169,97,.08),transparent 65%),
+    radial-gradient(40% 35% at 90% 90%,rgba(201,169,97,.03),transparent 60%)}
+
+.display{font-weight:900;letter-spacing:-.03em;line-height:1.05}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);display:flex;align-items:center;gap:10px;justify-content:center}
+.eyebrow::before{content:"";width:20px;height:1px;background:var(--acc)}
+.eyebrow::after{content:"";width:20px;height:1px;background:var(--acc)}
+
+section{position:relative;z-index:1;padding:100px var(--px)}
+.wrap{max-width:var(--wrap);margin:0 auto}
+
+/* ═══ NAV ═══ */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 var(--px);
+  background:linear-gradient(180deg,rgba(10,10,11,.96) 0%,rgba(10,10,11,.7) 70%,transparent);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.nav-inner{max-width:var(--wrap);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-logo svg{height:26px;width:auto}
+.nav-back{font-size:13px;color:var(--mut);font-weight:600;transition:.2s}
+.nav-back:hover{color:var(--ink)}
+
+/* ═══ HERO ═══ */
+.hero{display:flex;align-items:center;justify-content:center;text-align:center;padding-top:80px}
+.hero h1{font-size:56px;margin:20px 0 20px}
+.hero h1 em{font-style:italic;color:var(--acc);font-family:Georgia,'Times New Roman',serif;font-weight:400}
+.hero .lead{font-size:17px;color:var(--mut);max-width:520px;margin:0 auto 36px;line-height:1.7}
+.hero .lead strong{color:var(--ink);font-weight:700}
+
+/* waitlist counter */
+.wl-counter{display:inline-flex;align-items:center;gap:12px;background:var(--surf);border:1px solid var(--line);
+  border-radius:14px;padding:10px 22px;margin-bottom:40px}
+.wl-dot{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 2s infinite}
+.wl-text{font-size:13px;color:var(--mut);font-weight:600}
+.wl-text strong{color:var(--ink)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* form */
+.wl-form{max-width:440px;margin:0 auto}
+.wl-row{display:flex;gap:10px}
+.wl-input{flex:1;padding:15px 18px;background:var(--surf);border:1px solid var(--line2);border-radius:12px;
+  color:var(--ink);font-family:var(--font);font-size:15px;outline:none;transition:.2s}
+.wl-input:focus{border-color:var(--acc)}
+.wl-input::placeholder{color:var(--mut2)}
+.wl-btn{padding:15px 28px;background:var(--acc);color:var(--bg);font-family:var(--font);font-weight:800;
+  font-size:15px;border:none;border-radius:12px;cursor:pointer;transition:.2s;white-space:nowrap}
+.wl-btn:hover{background:var(--acc-light);transform:translateY(-1px);box-shadow:0 6px 24px rgba(201,169,97,.2)}
+.wl-fine{font-size:11px;color:var(--mut2);margin-top:12px}
+
+/* ═══ POSITION CARD (after signup) ═══ */
+.wl-result{display:none;text-align:center}
+.wl-pos{font-size:80px;font-weight:900;color:var(--acc);letter-spacing:-.04em;line-height:1}
+.wl-pos-label{font-size:14px;color:var(--mut);margin-top:4px;margin-bottom:28px}
+.wl-share{display:flex;gap:10px;justify-content:center;margin-top:20px}
+.wl-share-btn{padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;font-family:var(--font);
+  border:1px solid var(--line2);background:transparent;color:var(--ink);cursor:pointer;transition:.2s}
+.wl-share-btn:hover{border-color:var(--acc);color:var(--acc)}
+.wl-unlock{margin-top:40px;padding:20px 28px;background:var(--surf);border:1px solid var(--line);border-radius:14px;
+  display:inline-flex;align-items:center;gap:12px}
+.wl-unlock svg{width:20px;height:20px;stroke:var(--ok);stroke-width:2;fill:none}
+.wl-unlock span{font-size:14px;font-weight:700;color:var(--ok)}
+
+/* ═══ VIDEO SECTION ═══ */
+.video-section{border-top:1px solid var(--line)}
+.video-frame{position:relative;width:100%;padding-top:56.25%;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--surf)}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+
+/* ═══ VALUE PROPS ═══ */
+.vp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:48px}
+.vp-card{background:var(--surf);padding:32px 28px;border-radius:2px;text-align:center}
+.vp-icon{font-size:28px;margin-bottom:14px}
+.vp-card h3{font-size:16px;font-weight:800;margin-bottom:8px;letter-spacing:-.01em}
+.vp-card p{font-size:13px;color:var(--mut);line-height:1.55}
+
+/* ═══ FAQ ═══ */
+.faq-list{max-width:640px;margin:48px auto 0}
+.faq-item{border-bottom:1px solid var(--line);padding:20px 0}
+.faq-q{font-size:15px;font-weight:800;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q::after{content:"+";font-size:20px;color:var(--acc);font-weight:400;transition:.2s}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{font-size:14px;color:var(--mut);line-height:1.6;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease}
+.faq-item.open .faq-a{max-height:200px;padding-top:12px}
+
+/* ═══ DEMO SECTION ═══ */
+.demo-section{border-top:1px solid var(--line)}
+.demo-gate{position:relative}
+.demo-blur{filter:blur(8px);pointer-events:none;user-select:none;transition:filter .6s}
+.demo-blur.unlocked{filter:none;pointer-events:auto;user-select:auto}
+
+.demo-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;
+  background:radial-gradient(ellipse at center,rgba(10,10,11,.7) 0%,rgba(10,10,11,.4) 100%);
+  border-radius:16px;transition:opacity .4s}
+.demo-overlay.hidden{opacity:0;pointer-events:none}
+.demo-overlay-card{text-align:center;max-width:360px}
+.demo-overlay-card h3{font-size:22px;font-weight:900;margin-bottom:10px}
+.demo-overlay-card p{font-size:14px;color:var(--mut);margin-bottom:24px;line-height:1.6}
+.demo-overlay-card .wl-input{width:100%;margin-bottom:10px}
+.demo-overlay-card .wl-btn{width:100%}
+
+/* dashboard mock (reused from main site) */
+.dash-outer{background:var(--surf);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.dash-bar{display:flex;align-items:center;gap:8px;padding:12px 20px;border-bottom:1px solid var(--line);background:var(--bg2)}
+.dash-dot{width:8px;height:8px;border-radius:50%}
+.dash-title{font-size:12px;font-weight:600;color:var(--mut);margin-left:8px}
+.dash-content{padding:24px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px}
+.dash-metric{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:18px}
+.dm-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mut2);margin-bottom:6px}
+.dm-val{font-size:26px;font-weight:900;letter-spacing:-.02em}
+.dm-delta{font-size:11px;font-weight:700;margin-top:4px;color:var(--ok)}
+
+.dash-chart{grid-column:1/-1;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:20px;height:180px;position:relative}
+.chart-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mut2);margin-bottom:12px}
+.chart-bars{display:flex;align-items:flex-end;gap:5px;height:130px}
+.chart-bar{flex:1;border-radius:3px 3px 0 0}
+
+.dash-row{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.dash-panel{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:18px}
+.dash-panel h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mut2);margin-bottom:14px}
+.dash-line{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.dash-line:last-child{border-bottom:none}
+.dash-line .dl-name{font-size:13px;font-weight:700}
+.dash-line .dl-val{font-size:13px;color:var(--mut)}
+.dl-nflx{color:#FF3D45}.dl-dis{color:#7AA7FF}.dl-dazn{color:#CFFF04}.dl-prime{color:#37BDFF}.dl-hbo{color:#AE8DFF}
+
+/* ═══ FOOTER ═══ */
+footer{border-top:1px solid var(--line);padding:32px var(--px);text-align:center;position:relative;z-index:1}
+footer p{font-size:11px;color:var(--mut2)}
+footer a{color:var(--mut)}
+
+/* ═══ REVEAL ═══ */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:700px){
+  :root{--px:20px}
+  .hero h1{font-size:36px}
+  .wl-row{flex-direction:column}
+  .wl-btn{width:100%}
+  .dash-content{grid-template-columns:1fr 1fr}
+  .dash-row{grid-template-columns:1fr}
+  .wl-share{flex-direction:column;align-items:center}
+  .vp-grid{grid-template-columns:1fr}
+  section{padding:72px var(--px)}
+}
+</style>
+</head>
+<body>
+
+<div class="ambient"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="50 70 350 140">
+        <rect x="50" y="70" width="140" height="140" fill="#C9A961"/>
+        <text x="120" y="178" font-family="Georgia,'Times New Roman',serif" font-size="130" font-weight="400" fill="#0A0A0A" text-anchor="middle" font-style="italic">P</text>
+        <text x="215" y="118" font-family="Georgia,'Times New Roman',serif" font-size="34" font-weight="400" fill="#C9A961" font-style="italic" letter-spacing="14">recise</text>
+        <text x="215" y="210" font-family="Helvetica,Arial,sans-serif" font-size="72" font-weight="700" fill="#FFFFFF" letter-spacing="22">TV</text>
+      </svg>
+    </a>
+    <a href="index.html" class="nav-back">← Torna al sito</a>
+  </div>
+</nav>
+
+<!-- ═══ 1. VIDEO + VALUE PROPS ═══ -->
+<section class="hero" style="padding-bottom:80px">
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center">30 secondi dentro Precise TV</div>
+    <h1 class="display" style="text-align:center;font-size:clamp(36px,5vw,56px);margin:20px 0 12px">La TV premium.<br>Gestita dall'<em>AI</em>.</h1>
+    <p class="lead" style="text-align:center;margin:0 auto 36px">Creatività, targeting, ottimizzazione, inventory — tutto powered by <strong>MAiNAUS</strong>, il nostro agente AI proprietario.</p>
+
+    <!-- VIDEO EMBED -->
+    <div class="video-frame reveal">
+      <iframe src="demo-video.html" allow="autoplay" loading="lazy"></iframe>
+    </div>
+
+    <!-- 3 VALUE PROPS -->
+    <div class="vp-grid">
+      <div class="vp-card reveal">
+        <div class="vp-icon">🎨</div>
+        <h3>AI Creative</h3>
+        <p>Creatività direct-response generata in piattaforma. Da brief a spot pronto in minuti, senza agenzia.</p>
+      </div>
+      <div class="vp-card reveal">
+        <div class="vp-icon">📺 → 📱</div>
+        <h3>Seed &amp; Harvest</h3>
+        <p>TV premium per l'awareness, retargeting mobile per la conversione. Dalla TV al click, misurabile end-to-end.</p>
+      </div>
+      <div class="vp-card reveal">
+        <div class="vp-icon">📊</div>
+        <h3>Dashboard real-time</h3>
+        <p>Impression, reach, CPM, conversioni — aggiornati ogni ora. Nessun report PDF, numeri live.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 2. WAITLIST (HERO CTA) ═══ -->
+<section style="background:var(--bg2);text-align:center;padding:100px var(--px)">
+  <div class="wrap">
+    <div class="eyebrow reveal" style="justify-content:center">Early Access</div>
+    <h2 class="display reveal" style="font-size:clamp(32px,4.5vw,48px);margin:16px 0 16px">Entra nella lista.<br>Ottieni l'<em>accesso</em>.</h2>
+    <p class="reveal" style="font-size:16px;color:var(--mut);max-width:480px;margin:0 auto 32px;line-height:1.65">
+      Precise TV è in fase di lancio. I primi advertiser entrano per <strong style="color:var(--ink)">invito diretto</strong>. Lascia la tua email — ti mandiamo l'accesso appena si libera un posto nel tuo batch.
+    </p>
+
+    <div class="wl-counter reveal">
+      <div class="wl-dot"></div>
+      <div class="wl-text"><strong id="queueCount">73</strong> persone in lista</div>
+    </div>
+
+    <!-- FORM -->
+    <div id="wlForm" class="wl-form reveal">
+      <div class="wl-row">
+        <input type="email" class="wl-input" placeholder="La tua email aziendale" id="wlEmail" required>
+        <button class="wl-btn" onclick="joinWaitlist()">Entra in lista</button>
+      </div>
+      <p class="wl-fine">Niente spam. Solo l'invito quando è il tuo turno.</p>
+    </div>
+
+    <!-- RESULT (after signup) -->
+    <div id="wlResult" class="wl-result">
+      <div class="wl-pos" id="wlPosition">#—</div>
+      <div class="wl-pos-label">La tua posizione in lista</div>
+      <p style="font-size:15px;color:var(--mut);max-width:400px;margin:0 auto;line-height:1.65">
+        Sei dentro. Ti contatteremo a <strong style="color:var(--ink)" id="wlEmailShow">—</strong> appena si apre il tuo batch.
+      </p>
+
+      <div class="wl-unlock">
+        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span>Demo dashboard sbloccata — scorri per vederla</span>
+      </div>
+
+      <div class="wl-share">
+        <button class="wl-share-btn" onclick="shareLinkedIn()">Condividi su LinkedIn</button>
+        <button class="wl-share-btn" onclick="copyLink()">Copia link</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 3. FAQ ═══ -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow reveal" style="margin-bottom:16px">Domande frequenti</div>
+    <h2 class="display reveal" style="font-size:32px;text-align:center;margin-bottom:8px">Quello che ci chiedono tutti.</h2>
+
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Quanto costa usare Precise TV?</div>
+        <div class="faq-a">Non ci sono costi fissi di piattaforma. Paghi solo il media che investi sulle campagne. Il modello è trasparente: sai esattamente quanto va in media e quanto in fee di gestione.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Serve un budget minimo?</div>
+        <div class="faq-a">Consigliamo un investimento minimo di €5.000/mese per avere dati significativi e permettere a MAiNAUS di ottimizzare. Ma non c'è un lock-in contrattuale — puoi interrompere quando vuoi.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Quanto ci vuole per essere on-air?</div>
+        <div class="faq-a">Dal momento in cui ricevi l'accesso: configuri la campagna in self-service, il brief si genera automaticamente, il nostro team lo monta in DSP. Tipicamente sei on-air in 48-72 ore.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Devo avere già degli spot pronti?</div>
+        <div class="faq-a">No. L'AI Creative di Precise TV genera spot ottimizzati per CTV direttamente in piattaforma. Puoi partire da un brief testuale, da immagini prodotto, o da asset video esistenti da adattare.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Cos'è MAiNAUS?</div>
+        <div class="faq-a">MAiNAUS è il nostro agente AI proprietario che ottimizza le campagne settimanalmente. Analizza performance, ricalibra bid e frequenza, e seleziona l'inventory migliore. Oggi lavora in esclusiva per Precise TV — presto sarà disponibile anche come prodotto standalone in self-service.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DEMO GATED ═══ -->
+<section class="demo-section" id="demoSection">
+  <div class="wrap">
+    <div class="eyebrow reveal" style="margin-bottom:16px">Anteprima piattaforma</div>
+    <h2 class="display reveal" style="font-size:32px;text-align:center;margin-bottom:8px">Guarda cosa ti aspetta.</h2>
+    <p class="reveal" style="font-size:14px;color:var(--mut);text-align:center;margin-bottom:40px;max-width:440px;margin-left:auto;margin-right:auto">La dashboard real-time di Precise TV. Impression, reach, CPM, conversioni — tutto in un posto.</p>
+
+    <div class="demo-gate reveal">
+      <!-- OVERLAY (locks demo until signup) -->
+      <div class="demo-overlay" id="demoOverlay">
+        <div class="demo-overlay-card">
+          <h3>Demo riservata</h3>
+          <p>Entra nella waitlist per sbloccare l'anteprima completa della dashboard.</p>
+          <input type="email" class="wl-input" placeholder="La tua email aziendale" id="demoEmail">
+          <button class="wl-btn" onclick="joinFromDemo()">Sblocca la demo</button>
+        </div>
+      </div>
+
+      <!-- DASHBOARD MOCK (blurred until signup) -->
+      <div class="dash-outer demo-blur" id="demoDash">
+        <div class="dash-bar">
+          <div class="dash-dot" style="background:#FF5F57"></div>
+          <div class="dash-dot" style="background:#FEBC2E"></div>
+          <div class="dash-dot" style="background:#28C840"></div>
+          <span class="dash-title">precisetv.info / app / campaigns / Campagna Estate 2026</span>
+        </div>
+        <div class="dash-content">
+          <div class="dash-metric">
+            <div class="dm-label">Impression TV (seed)</div>
+            <div class="dm-val">2.4M</div>
+            <div class="dm-delta">↑ 18% vs settimana scorsa</div>
+          </div>
+          <div class="dash-metric">
+            <div class="dm-label">Reach unico</div>
+            <div class="dm-val">847K</div>
+            <div class="dm-delta">↑ 12% vs target</div>
+          </div>
+          <div class="dash-metric">
+            <div class="dm-label">CPM effettivo</div>
+            <div class="dm-val" style="color:var(--acc)">€18.40</div>
+            <div class="dm-delta">↓ 9% dopo MAiNAUS</div>
+          </div>
+          <div class="dash-metric">
+            <div class="dm-label">Conversioni (harvest)</div>
+            <div class="dm-val" style="color:var(--ok)">3,241</div>
+            <div class="dm-delta">Cost per visit €2.14</div>
+          </div>
+
+          <div class="dash-chart">
+            <div class="chart-label">Impression TV + conversioni mobile — ultimi 14 giorni</div>
+            <div class="chart-bars" id="chartBars"></div>
+          </div>
+
+          <div class="dash-row">
+            <div class="dash-panel">
+              <h4>Breakdown per piattaforma</h4>
+              <div class="dash-line"><span class="dl-name dl-nflx">Netflix</span><span class="dl-val">680K imp · CPM €21</span></div>
+              <div class="dash-line"><span class="dl-name dl-dis">Disney+</span><span class="dl-val">520K imp · CPM €19</span></div>
+              <div class="dash-line"><span class="dl-name dl-dazn">DAZN</span><span class="dl-val">440K imp · CPM €16</span></div>
+              <div class="dash-line"><span class="dl-name dl-prime">Prime Video</span><span class="dl-val">490K imp · CPM €17</span></div>
+              <div class="dash-line"><span class="dl-name dl-hbo">HBO Max</span><span class="dl-val">270K imp · CPM €15</span></div>
+            </div>
+            <div class="dash-panel">
+              <h4>Ottimizzazioni MAiNAUS</h4>
+              <div class="dash-line"><span class="dl-name" style="color:var(--acc)">Ultimo ciclo</span><span class="dl-val">28 mag, 09:00</span></div>
+              <div class="dash-line"><span class="dl-name">Bid aggiornati</span><span class="dl-val">14 line item</span></div>
+              <div class="dash-line"><span class="dl-name">Frequenza ottimale</span><span class="dl-val">2.8x / 7gg</span></div>
+              <div class="dash-line"><span class="dl-name">Pacing</span><span class="dl-val" style="color:var(--ok)">On track ✓</span></div>
+              <div class="dash-line"><span class="dl-name">Prossimo ciclo</span><span class="dl-val">4 giu, 09:00</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Precise TV — AI-Powered Connected TV Advertising</p>
+  <p style="margin-top:4px">Un prodotto <a href="https://preciseadvertising.it" target="_blank" rel="noopener">Precise Advertising S.r.l.</a></p>
+</footer>
+
+<script>
+// Reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)} });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Chart bars
+const data = [145,168,152,189,201,178,210,195,224,238,212,248,261,240];
+const mx = Math.max(...data);
+const ct = document.getElementById('chartBars');
+data.forEach((v,i) => {
+  const b = document.createElement('div');
+  b.className='chart-bar';
+  b.style.height = (v/mx)*110+'px';
+  b.style.background = i%2===0?'var(--acc)':'var(--acc-light)';
+  b.style.opacity = 0.45+(v/mx)*0.55;
+  ct.appendChild(b);
+});
+
+// Simulated queue count (base + time-based increment for realism)
+let baseQueue = 68;
+let hoursSinceLaunch = Math.floor((Date.now() - new Date('2026-06-01').getTime()) / 3600000);
+let currentQueue = baseQueue + Math.min(hoursSinceLaunch, 200);
+document.getElementById('queueCount').textContent = currentQueue;
+
+// State
+let isSignedUp = false;
+
+function doSignup(email) {
+  if(!email || !email.includes('@')) return;
+  isSignedUp = true;
+  currentQueue++;
+  const position = currentQueue;
+
+  // Show result
+  document.getElementById('wlForm').style.display = 'none';
+  document.getElementById('wlResult').style.display = 'block';
+  document.getElementById('wlPosition').textContent = '#' + position;
+  document.getElementById('wlEmailShow').textContent = email;
+  document.getElementById('queueCount').textContent = currentQueue;
+
+  // Unlock demo
+  document.getElementById('demoDash').classList.add('unlocked');
+  document.getElementById('demoOverlay').classList.add('hidden');
+
+  // Send mailto (replace with API call in production)
+  const mailBody = 'Nuova iscrizione waitlist Precise TV\n\nEmail: ' + email + '\nPosizione: #' + position + '\nTimestamp: ' + new Date().toISOString();
+  window.open('mailto:info@precisetv.info?subject=Waitlist%20Precise%20TV%20%23' + position + '&body=' + encodeURIComponent(mailBody), '_self');
+}
+
+function joinWaitlist() {
+  doSignup(document.getElementById('wlEmail').value);
+}
+
+function joinFromDemo() {
+  const email = document.getElementById('demoEmail').value;
+  doSignup(email);
+  document.getElementById('wlEmail').value = email;
+  document.getElementById('demoSection').scrollIntoView({behavior:'smooth'});
+}
+
+// Enter key on inputs
+document.getElementById('wlEmail').addEventListener('keydown', e => { if(e.key==='Enter') joinWaitlist() });
+document.getElementById('demoEmail').addEventListener('keydown', e => { if(e.key==='Enter') joinFromDemo() });
+
+function shareLinkedIn() {
+  window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent('https://precisetv.info/waitlist'), '_blank');
+}
+function copyLink() {
+  const url = 'https://precisetv.info/waitlist';
+  if(navigator.clipboard) {
+    navigator.clipboard.writeText(url);
+    event.target.textContent = 'Link copiato ✓';
+    setTimeout(() => event.target.textContent = 'Copia link', 2000);
+  }
+}
+</script>
+
+</body>
+</html>
