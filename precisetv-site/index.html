@@ -154,6 +154,8 @@ textarea.form-input{resize:vertical;min-height:80px}
 .form-ok{display:none;text-align:center;padding:24px;color:var(--ok);font-weight:700;font-size:15px}
 
 .cta-note{margin-top:20px;font-size:12px;color:var(--mut2);text-align:center}
+.privacy-check{display:flex;align-items:flex-start;gap:8px;margin:12px 0 4px;font-size:12px;color:var(--mut);line-height:1.5}
+.privacy-check input[type=checkbox]{margin-top:3px;accent-color:var(--acc);min-width:16px}
 
 /* ═══ FOOTER ═══ */
 footer{border-top:1px solid var(--line);padding:40px var(--px);text-align:center;position:relative;z-index:1}
@@ -414,6 +416,7 @@ footer a:hover{color:var(--ink)}
           <div class="form-row">
             <input type="email" class="form-input" placeholder="La tua email aziendale" required id="accessEmail">
           </div>
+          <label class="privacy-check"><input type="checkbox" required>Ho letto e accetto la <a href="privacy.html" target="_blank" style="color:var(--acc)">privacy policy</a></label>
           <button type="submit" class="btn btn-primary form-submit">
             Richiedi invito
             <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -439,6 +442,7 @@ footer a:hover{color:var(--ink)}
           <div class="form-row stack">
             <textarea class="form-input" placeholder="Raccontaci brevemente cosa fai e cosa ti interessa di Precise TV"></textarea>
           </div>
+          <label class="privacy-check"><input type="checkbox" required>Ho letto e accetto la <a href="privacy.html" target="_blank" style="color:var(--acc)">privacy policy</a></label>
           <button type="submit" class="btn btn-ghost form-submit">Invia richiesta</button>
         </form>
         <div class="form-ok" id="infoOk">Messaggio inviato. Ti ricontattiamo entro 24 ore.</div>
@@ -460,7 +464,7 @@ footer a:hover{color:var(--ink)}
     </svg>
   </div>
   <p>AI-Powered Connected TV Advertising</p>
-  <p style="margin-top:4px">Un prodotto <a href="https://preciseadvertising.it" target="_blank" rel="noopener">Precise Advertising S.r.l.</a></p>
+  <p style="margin-top:4px">Un prodotto <a href="https://preciseadvertising.tech" target="_blank" rel="noopener">Precise Advertising S.r.l.</a> · <a href="privacy.html">Privacy Policy</a></p>
 </footer>
 
 <!-- ═══ JS ═══ -->

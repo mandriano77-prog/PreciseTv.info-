@@ -12,6 +12,7 @@
   ],
   "rewrites": [
     { "source": "/waitlist", "destination": "/waitlist.html" },
-    { "source": "/demo", "destination": "/demo-video.html" }
+    { "source": "/demo", "destination": "/demo-video.html" },
+    { "source": "/privacy", "destination": "/privacy.html" }
   ]
 }

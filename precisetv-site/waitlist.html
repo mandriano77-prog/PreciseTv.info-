@@ -74,6 +74,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 var(--px);
   font-size:15px;border:none;border-radius:12px;cursor:pointer;transition:.2s;white-space:nowrap}
 .wl-btn:hover{background:var(--acc-light);transform:translateY(-1px);box-shadow:0 6px 24px rgba(201,169,97,.2)}
 .wl-fine{font-size:11px;color:var(--mut2);margin-top:12px}
+.privacy-check{display:flex;align-items:flex-start;gap:8px;margin:10px 0 2px;font-size:12px;color:var(--mut);line-height:1.5;justify-content:center}
+.privacy-check input[type=checkbox]{margin-top:3px;accent-color:var(--acc);min-width:16px}
 
 /* ═══ POSITION CARD (after signup) ═══ */
 .wl-result{display:none;text-align:center}
@@ -244,6 +246,7 @@ footer a{color:var(--mut)}
         <input type="email" class="wl-input" placeholder="La tua email aziendale" id="wlEmail" required>
         <button class="wl-btn" onclick="joinWaitlist()">Entra in lista</button>
       </div>
+      <label class="privacy-check"><input type="checkbox" id="wlConsent">Ho letto e accetto la <a href="privacy.html" target="_blank" style="color:var(--acc)">privacy policy</a></label>
       <p class="wl-fine">Niente spam. Solo l'invito quando è il tuo turno.</p>
     </div>
 
@@ -313,6 +316,7 @@ footer a{color:var(--mut)}
           <h3>Demo riservata</h3>
           <p>Entra nella waitlist per sbloccare l'anteprima completa della dashboard.</p>
           <input type="email" class="wl-input" placeholder="La tua email aziendale" id="demoEmail">
+          <label class="privacy-check" style="justify-content:center"><input type="checkbox" id="demoConsent">Ho letto e accetto la <a href="privacy.html" target="_blank" style="color:var(--acc)">privacy policy</a></label>
           <button class="wl-btn" onclick="joinFromDemo()">Sblocca la demo</button>
         </div>
       </div>
@@ -378,7 +382,7 @@ footer a{color:var(--mut)}
 
 <footer>
   <p>Precise TV — AI-Powered Connected TV Advertising</p>
-  <p style="margin-top:4px">Un prodotto <a href="https://preciseadvertising.it" target="_blank" rel="noopener">Precise Advertising S.r.l.</a></p>
+  <p style="margin-top:4px">Un prodotto <a href="https://preciseadvertising.tech" target="_blank" rel="noopener">Precise Advertising S.r.l.</a> · <a href="privacy.html" style="color:var(--mut)">Privacy Policy</a></p>
 </footer>
 
 <script>
@@ -410,8 +414,10 @@ document.getElementById('queueCount').textContent = currentQueue;
 // State
 let isSignedUp = false;
 
-function doSignup(email) {
+function doSignup(email, consentId) {
   if(!email || !email.includes('@')) return;
+  const consent = document.getElementById(consentId);
+  if(consent && !consent.checked) { alert('Devi accettare la privacy policy per continuare.'); return; }
   isSignedUp = true;
   currentQueue++;
   const position = currentQueue;
@@ -433,12 +439,12 @@ function doSignup(email) {
 }
 
 function joinWaitlist() {
-  doSignup(document.getElementById('wlEmail').value);
+  doSignup(document.getElementById('wlEmail').value, 'wlConsent');
 }
 
 function joinFromDemo() {
   const email = document.getElementById('demoEmail').value;
-  doSignup(email);
+  doSignup(email, 'demoConsent');
   document.getElementById('wlEmail').value = email;
   document.getElementById('demoSection').scrollIntoView({behavior:'smooth'});
 }
